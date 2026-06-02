@@ -8,7 +8,7 @@ SCREEN_HEIGHT = 600
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("2D Shooter")
 
-BACKGROUND_COLOR = (255, 255, 255)
+BACKGROUND_COLOUR = (255, 255, 255)
 
 clock = pygame.time.Clock()
 
@@ -18,7 +18,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill(BACKGROUND_COLOR)
+    screen.fill(BACKGROUND_COLOUR)
  
     pygame.display.flip()
 
