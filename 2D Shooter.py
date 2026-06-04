@@ -27,6 +27,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_a]:
+        player_x -= player_speed
+    if keys[pygame.K_d]:
+        player_x += player_speed
+    if keys[pygame.K_w]:
+        player_y -= player_speed
+    if keys[pygame.K_s]:
+        player_y += player_speed
+
     screen.fill(BACKGROUND_COLOUR)
  
     pygame.draw.rect(screen, player_colour, (player_x, player_y, player_width, player_height))
