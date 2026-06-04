@@ -18,7 +18,7 @@ player_height = 25
 
 player_x = 300
 player_y = 300
-player_speed = 5
+player_speed = 3
 
 running = True
 
@@ -37,6 +37,16 @@ while running:
         player_y -= player_speed
     if keys[pygame.K_s]:
         player_y += player_speed
+
+    if player_x < 0:
+        player_x = 0
+    if player_y < 0:
+        player_y = 0
+    if player_x > SCREEN_WIDTH - player_width:
+        player_x = SCREEN_WIDTH - player_width
+    if player_y > SCREEN_HEIGHT - player_height:
+        player_y = SCREEN_HEIGHT - player_height
+
 
     screen.fill(BACKGROUND_COLOUR)
  
