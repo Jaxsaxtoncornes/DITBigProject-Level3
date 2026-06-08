@@ -18,6 +18,8 @@ player_height = 25
 
 player_x = 300
 player_y = 300
+player_speed = 3
+
 running = True
 
 while running:
