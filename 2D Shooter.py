@@ -17,28 +17,29 @@ black = (0,0,0)
 
 class Players:
     def __init__(self):
-        self.x = 0
-        self.y = 800
+        self.x = x
+        self.y = y
 
         self.width = 25
         self.height = 25
-        self.colour = (225, 0, 0)
+
+        self.colour = colour
 
         self.speed = 4
 
         self.colour = (255, 0, 0)
 
     def movement(self, keys):
-        if keys[pygame.K_a]:
+        if keys[self.left]:
             self.x -= self.speed
         
-        if keys[pygame.K_d]:
+        if keys[self.right]:
             self.x += self.speed
         
-        if keys[pygame.K_w]:
+        if keys[self.up]:
             self.y -= self.speed
         
-        if keys[pygame.K_s]:
+        if keys[self.down]:
             self.y += self.speed
 
     def boundrys(self):
@@ -61,6 +62,23 @@ class Players:
             (self.x, self.y, self.width, self.height)
         )
 
+player1 = Players(
+    0, 800
+    (225, 0, 0),
+    pygame.K_a,
+    pygame.K_d,
+    pygame.K_w,
+    pygame.K_s    
+)
+
+player2 = Players(
+    1400, 800
+    (0, 0, 225),
+    pygame.K_j,
+    pygame.K_l,
+    pygame.K_i,
+    pygame.K_k
+)
 
 player = Players()
 
@@ -74,8 +92,11 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    player.movement(keys)
-    player.boundrys()
+    player1.movement(keys)
+    player1.boundrys()
+
+    player2.movement(keys)
+    player2.boundrys()  
 
     screen.fill(BACKGROUND_COLOUR)
 
