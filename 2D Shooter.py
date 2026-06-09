@@ -16,7 +16,7 @@ black = (0,0,0)
 
 
 class Players:
-    def __init__(self):
+    def __init__(self, x, y, colour, left, right, up, down):
         self.x = x
         self.y = y
 
@@ -24,10 +24,12 @@ class Players:
         self.height = 25
 
         self.colour = colour
-
         self.speed = 4
 
-        self.colour = (255, 0, 0)
+        self.left = left
+        self.right = right
+        self.up = up
+        self.down = down
 
     def movement(self, keys):
         if keys[self.left]:
@@ -63,7 +65,7 @@ class Players:
         )
 
 player1 = Players(
-    0, 800
+    0, 800,
     (225, 0, 0),
     pygame.K_a,
     pygame.K_d,
@@ -72,15 +74,13 @@ player1 = Players(
 )
 
 player2 = Players(
-    1400, 800
+    1400, 800,
     (0, 0, 225),
     pygame.K_j,
     pygame.K_l,
     pygame.K_i,
     pygame.K_k
 )
-
-player = Players()
 
 running = True
 
@@ -100,7 +100,8 @@ while running:
 
     screen.fill(BACKGROUND_COLOUR)
 
-    player.draw(screen)
+    player1.draw(screen)
+    player2.draw(screen)
 
     pygame.display.flip()
 
