@@ -3,7 +3,7 @@ import pygame
 
 pygame.init()
 
-SCREEN_WIDTH = 1500
+SCREEN_WIDTH = 1450
 SCREEN_HEIGHT = 800
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -22,6 +22,8 @@ class Players:
 
         self.width = 25
         self.height = 25
+
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
         self.colour = colour
         self.speed = 4
@@ -44,6 +46,9 @@ class Players:
         if keys[self.down]:
             self.y += self.speed
 
+        self.rect.x = self.x
+        self.rect.y = self.y
+
     def boundrys(self):
         if self.x < 0:
             self.x = 0
@@ -57,12 +62,21 @@ class Players:
         if self.y > SCREEN_HEIGHT - self.height:
             self.y = SCREEN_HEIGHT - self.height
 
+        self.rect.x = self.x        
+        self.rect.y = self.y
+
+
     def draw(self, screen):
         pygame.draw.rect(
             screen,
             self.colour,
             (self.x, self.y, self.width, self.height)
         )
+
+    def collision(self, other):
+        if self.rect.colliderect(other.rect):
+            return True
+        return False
 
 player1 = Players(
     0, 800,
@@ -93,9 +107,19 @@ while running:
     keys = pygame.key.get_pressed()
 
     player1.movement(keys)
+
+    if player1.collision(player2):
+        player1.x -= player1.speed
+        player1.rect.x = player1.x
+
     player1.boundrys()
 
     player2.movement(keys)
+
+    if player2.collision(player1):
+        player2.x -= player2.speed
+        player2.rect.x = player2.x
+
     player2.boundrys()  
 
     screen.fill(BACKGROUND_COLOUR)
