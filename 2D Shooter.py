@@ -80,7 +80,7 @@ class Players:
         return False
 
 player1 = Players(
-    0, 800,
+    0, 775,
     (225, 0, 0),
     pygame.K_a,
     pygame.K_d,
@@ -89,7 +89,7 @@ player1 = Players(
 )
 
 player2 = Players(
-    1400, 800,
+    1400, 775,
     (0, 0, 225),
     pygame.K_j,
     pygame.K_l,
