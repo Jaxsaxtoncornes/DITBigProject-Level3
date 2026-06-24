@@ -34,43 +34,44 @@ class Players:
         self.down = down
 
     def movement(self, keys):
+
+        old_x = self.rect.x
+        old_y = self.rect.y
+
         if keys[self.left]:
-            self.x -= self.speed
+            self.rect.x -= self.speed
         
         if keys[self.right]:
-            self.x += self.speed
+            self.rect.x += self.speed
         
         if keys[self.up]:
-            self.y -= self.speed
+            self.rect.y -= self.speed
         
         if keys[self.down]:
-            self.y += self.speed
+            self.rect.y += self.speed
 
-        self.rect.x = self.x
-        self.rect.y = self.y
+        return old_x, old_y
+
 
     def boundrys(self):
-        if self.x < 0:
-            self.x = 0
+        if self.rect.left < 0:
+            self.rect.left = 0
 
-        if self.y < 0:
-            self.y = 0
+        if self.rect.right > SCREEN_WIDTH:
+            self.rect.right = SCREEN_WIDTH
 
-        if self.x > SCREEN_WIDTH - self.width:
-            self.x = SCREEN_WIDTH - self.width
+        if self.rect.top < 0:
+            self.rect.top = 0
 
-        if self.y > SCREEN_HEIGHT - self.height:
-            self.y = SCREEN_HEIGHT - self.height
-
-        self.rect.x = self.x        
-        self.rect.y = self.y
+        if self.rect.bottom > SCREEN_HEIGHT:
+            self.rect.bottom = SCREEN_HEIGHT
 
 
     def draw(self, screen):
         pygame.draw.rect(
             screen,
             self.colour,
-            (self.x, self.y, self.width, self.height)
+            self.rect
         )
 
     def collision(self, other):
@@ -106,19 +107,19 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    player1.movement(keys)
+    old_x, old_y = player1.movement(keys)
 
     if player1.collision(player2):
-        player1.x -= player1.speed
-        player1.rect.x = player1.x
+        player1.rect.x = old_x
+        player1.rect.y = old_y
 
     player1.boundrys()
 
-    player2.movement(keys)
+    old_x, old_y = player2.movement(keys)
 
     if player2.collision(player1):
-        player2.x -= player2.speed
-        player2.rect.x = player2.x
+        player2.rect.x = old_x
+        player2.rect.y = old_y
 
     player2.boundrys()  
 
