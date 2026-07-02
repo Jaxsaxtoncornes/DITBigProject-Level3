@@ -93,12 +93,6 @@ class Players:
             return True
         return False
     
-    def shooting(self):
-        #shooting
-
-    def health(self):
-        #health
-
 
 player1 = Players(
     0, 775,
