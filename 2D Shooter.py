@@ -33,10 +33,7 @@ class Players:
         self.up = up
         self.down = down
 
-    def movement(self, keys):
-
-        old_x = self.rect.x
-        old_y = self.rect.y
+    def movement(self, keys, other):
 
         if keys[self.left]:
             self.rect.x -= self.speed
@@ -44,13 +41,25 @@ class Players:
         if keys[self.right]:
             self.rect.x += self.speed
         
+        if self.collision(other):
+            if keys[self.left]:
+                self.rect.left = other.rect.right
+
+            if keys[self.right]:
+                self.rect.right = other.rect.left
+
         if keys[self.up]:
             self.rect.y -= self.speed
         
         if keys[self.down]:
             self.rect.y += self.speed
 
-        return old_x, old_y
+        if self.collision(other):
+            if keys[self.up]:
+                self.rect.top = other.rect.bottom
+
+            if keys[self.down]:
+                self.rect.bottom = other.rect.top
 
 
     def boundrys(self):
@@ -107,19 +116,11 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    old_x, old_y = player1.movement(keys)
-
-    if player1.collision(player2):
-        player1.rect.x = old_x
-        player1.rect.y = old_y
+    player1.movement(keys, player2)
 
     player1.boundrys()
 
-    old_x, old_y = player2.movement(keys)
-
-    if player2.collision(player1):
-        player2.rect.x = old_x
-        player2.rect.y = old_y
+    player2.movement(keys, player1)
 
     player2.boundrys()  
 
