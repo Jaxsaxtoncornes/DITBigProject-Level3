@@ -20,6 +20,7 @@ yellow = (225, 225, 0)
 
 bullets = []
 
+
 class Players:
     def __init__(self, x, y, colour, left, right, up, down):
         self.x = x
@@ -112,6 +113,12 @@ player2 = Players(
     pygame.K_k
 )
 
+walls = [
+    pygame.Rect(300, 100, 20, 400),
+    pygame.Rect(600, 200, 500, 20),
+    pygame.Rect(1000, 50, 20, 300),
+]
+
 running = True
 
 
@@ -122,15 +129,26 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    player1.movement(keys, player2)
+    old_rect1 = player1.rect.copy()
+    old_rect2 = player2.rect.copy()
 
+    player1.movement(keys, player2)
     player1.boundrys()
 
     player2.movement(keys, player1)
+    player2.boundrys()
 
-    player2.boundrys()  
+    for wall in walls:
+        if player1.rect.colliderect(wall):
+            player1.rect = old_rect1.copy()
+
+        if player2.rect.colliderect(wall):
+            player2.rect = old_rect2.copy()
 
     screen.fill(BACKGROUND_COLOUR)
+
+    for wall in walls:
+        pygame.draw.rect(screen, black, wall)
 
     player1.draw(screen)
     player2.draw(screen)
