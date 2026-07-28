@@ -114,9 +114,9 @@ player2 = Players(
 )
 
 walls = [
-    pygame.Rect(300, 100, 20, 400),
-    pygame.Rect(600, 200, 500, 20),
-    pygame.Rect(1000, 50, 20, 300),
+    pygame.Rect(350, 100, 20, 500),
+    pygame.Rect(1080, 100, 20, 500),
+    pygame.Rect(600, 340, 250, 20),
 ]
 
 running = True
