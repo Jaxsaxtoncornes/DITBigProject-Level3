@@ -14,7 +14,7 @@ pygame.display.set_caption("2D Shooter")
 
 clock = pygame.time.Clock()
 
-BACKGROUND_COLOUR = (255, 255, 255)
+BACKGROUND_COLOUR = (0, 255, 255)
 black = (0,0,0)
 yellow = (225, 225, 0)
 
