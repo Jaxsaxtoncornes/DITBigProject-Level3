@@ -28,9 +28,10 @@ BACKGROUND_COLOUR = (224, 255, 255)
 black = (0,0,0)
 yellow = (225, 225, 0)
 
+font = pygame.font.Font(None, 40)
 
 class Players:
-    def __init__(self, x, y, colour, left, right, up, down):
+    def __init__(self, x, y, colour, left, right, up, down, shoot):
         self.x = x
         self.y = y
 
@@ -46,6 +47,11 @@ class Players:
         self.right = right
         self.up = up
         self.down = down
+        self.shoot = shoot
+
+        self.health = 100
+
+        self.facing = "right"
 
     def movement(self, keys, other):
 
