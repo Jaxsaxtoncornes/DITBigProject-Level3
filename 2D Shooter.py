@@ -264,6 +264,39 @@ while running:
         elif bullet["direction"] == "down":
             bullet["rect"].y += BULLET_SPEED 
 
+    for bullet in bullets[:]:
+
+        for wall in walls:
+            if bullet["rect"].colliderect(wall):
+                bullets.remove(bullet)
+                break
+
+        else:
+
+            if bullet["owner"] != player1:
+                if bullet["rect"].colliderect(player1.rect):
+
+                    player1.health -= BULLET_DAMAGE
+                    bullets.remove(bullet)
+
+                    if player1.health <= 0:
+                        scores["player2"] += 1
+
+                        player1.rect.topleft = (0, 775)
+                        player1.health = 100
+
+            elif bullet["owner"] != player2:
+                if bullet["rect"].colliderect(player2.rect):
+
+                    player2.health -= BULLET_DAMAGE
+                    bullets.remove(bullet)
+
+                    if player2.health <= 0:
+                        scores["player2"] += 1
+
+                        player2.rect.topleft = (0, 775)
+                        player2.health = 100
+
     for wall in walls:
         if player1.rect.colliderect(wall):
             player1.rect = old_rect1.copy()
