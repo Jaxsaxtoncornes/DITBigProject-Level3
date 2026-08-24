@@ -185,16 +185,16 @@ class Players:
             gun = pygame.Rect(
                 self.rect.centerx - gun_height //2,
                 self.rect.top - gun_width,
-                gun_width,
-                gun_height
+                gun_height,
+                gun_width
             )
 
         else:
             gun = pygame.Rect(
                 self.rect.centerx - gun_height //2,
                 self.rect.bottom,
-                gun_width,
-                gun_height
+                gun_height,
+                gun_width
             )
 
         pygame.draw.rect(screen, black, gun)
