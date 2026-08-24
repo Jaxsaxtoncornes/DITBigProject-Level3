@@ -101,8 +101,8 @@ class Players:
             bullet = pygame.Rect(
                 self.rect.right,
                 self.rect.centery - BULLET_HEIGHT // 2,
-                BULLET_WIDTH,
-                BULLET_HEIGHT
+                BULLET_HEIGHT,
+                BULLET_WIDTH
             )
             direction = 1
 
@@ -110,8 +110,8 @@ class Players:
             bullet = pygame.Rect(
                 self.rect.left - BULLET_WIDTH,
                 self.rect.centery - BULLET_HEIGHT // 2,
-                BULLET_WIDTH,
-                BULLET_HEIGHT
+                BULLET_HEIGHT,
+                BULLET_WIDTH
             )
             direction = -1
 
