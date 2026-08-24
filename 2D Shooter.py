@@ -165,6 +165,40 @@ class Players:
         gun_width = 12
         gun_height = 6
 
+        if self.facing == "right":
+            gun = pygame.Rect(
+                self.rect.right,
+                self.rect.centery - gun_height // 2,
+                gun_width,
+                gun_height
+            )
+
+        elif self.facing == "left":
+            gun = pygame.Rect(
+                self.rect.left - gun_width,
+                self.rect.centery - gun_height // 2,
+                gun_width,
+                gun_height
+            )
+
+        elif self.facing == "up":
+            gun = pygame.Rect(
+                self.rect.centerx - gun_height //2,
+                self.rect.top - gun_width,
+                gun_width,
+                gun_height
+            )
+
+        else:
+            gun = pygame.Rect(
+                self.rect.centerx - gun_height //2,
+                self.rect.bottom,
+                gun_width,
+                gun_height
+            )
+
+        pygame.draw.rect(screen, black, gun)
+
     def collision(self, other):
         if self.rect.colliderect(other.rect):
             return True
@@ -229,7 +263,10 @@ while running:
         pygame.draw.rect(screen, black, wall)
 
     player1.draw(screen)
+    player1.draw_gun(screen)
+
     player2.draw(screen)
+    player2.draw_gun(screen)
 
     pygame.display.flip()
 
