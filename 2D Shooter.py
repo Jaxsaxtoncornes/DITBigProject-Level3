@@ -88,6 +88,22 @@ class Players:
             if keys[self.down]:
                 self.rect.bottom = other.rect.top
 
+    def shoot_bullet(self):
+
+        current_time = pygame.time.get_ticks()
+
+        if current_time - self.last_shot < SHOOT_COOLDOWN:
+            return
+
+        self.last_shot = current_time
+
+        if self.facing == "right":
+            bullet = pygame.Rect(
+                self.rect.right
+                self.rect.centery - BULLET_HEIGHT // 2,
+                BULLET_WIDTH,
+                BULLET_HEIGHT
+            )
 
     def boundrys(self):
         if self.rect.left < 0:
