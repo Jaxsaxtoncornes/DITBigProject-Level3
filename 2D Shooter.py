@@ -203,6 +203,20 @@ class Players:
         if self.rect.colliderect(other.rect):
             return True
         return False
+
+    def draw_health(self, screen, x, y):
+
+        pygame.draw.rect(
+            screen,
+            black,
+            (x, y, 200, 20)
+        )
+
+        pygame.draw.rect(
+            screen,
+            self.colour,
+            (x, y, self.health * 2, 20)
+        )
     
 
 player1 = Players(
@@ -324,7 +338,8 @@ while running:
     player2.draw(screen)
     player2.draw_gun(screen)
 
-
+    player1.draw_health(screen, 20, 20)
+    player2.draw_health(screen, SCREEN_WIDTH - 220, 20)
 
     
 
