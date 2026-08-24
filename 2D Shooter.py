@@ -341,7 +341,16 @@ while running:
     player1.draw_health(screen, 20, 20)
     player2.draw_health(screen, SCREEN_WIDTH - 220, 20)
 
-    
+    score_text = font.render(
+        f"P1: {scores['player1']}  P2: {scores['player2']}",
+        True,
+        black
+    )
+
+    screen.blit(
+        score_text,
+        (SCREEN_WIDTH // 2 - score_text.get_width() // 2, 20)
+    )
 
     pygame.display.flip()
 
