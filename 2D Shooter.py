@@ -99,11 +99,45 @@ class Players:
 
         if self.facing == "right":
             bullet = pygame.Rect(
-                self.rect.right
+                self.rect.right,
                 self.rect.centery - BULLET_HEIGHT // 2,
                 BULLET_WIDTH,
                 BULLET_HEIGHT
             )
+            direction = 1
+
+        elif self.facing == "left":
+            bullet = pygame.Rect(
+                self.rect.left - BULLET_WIDTH,
+                self.rect.centery - BULLET_HEIGHT // 2,
+                BULLET_WIDTH,
+                BULLET_HEIGHT
+            )
+            direction = -1
+
+        elif self.facing == "up":
+            bullet = pygame.Rect(
+                self.rect.centerx - BULLET_HEIGHT // 2,
+                self.rect.top - BULLET_WIDTH,
+                BULLET_WIDTH,
+                BULLET_HEIGHT
+            )
+            direction = "up"
+
+        else:
+            bullet = pygame.Rect(
+                self.rect.centerx - BULLET_HEIGHT // 2,
+                self.rect.bottom,
+                BULLET_WIDTH,
+                BULLET_HEIGHT
+            )
+            direction = "down"
+
+        bullets.append({
+            "rect": bullet,
+            "direction": direction,
+            "owner": self
+        })
 
     def boundrys(self):
         if self.rect.left < 0:
