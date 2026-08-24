@@ -59,11 +59,11 @@ class Players:
 
         if keys[self.left]:
             self.rect.x -= self.speed
-            self.facing - "left"
+            self.facing = "left"
         
         if keys[self.right]:
             self.rect.x += self.speed
-            self.facing - "right"
+            self.facing = "right"
 
         
         if self.collision(other):
@@ -75,11 +75,11 @@ class Players:
 
         if keys[self.up]:
             self.rect.y -= self.speed
-            self.facing - "up"
+            self.facing = "up"
         
         if keys[self.down]:
             self.rect.y += self.speed
-            self.facing - "down"
+            self.facing = "down"
 
         if self.collision(other):
             if keys[self.up]:
@@ -276,10 +276,10 @@ while running:
             bullet["rect"].x += BULLET_SPEED
 
         elif bullet["direction"] == -1:
-            bullet["rect"].x += BULLET_SPEED
+            bullet["rect"].x -= BULLET_SPEED
 
         elif bullet["direction"] == "up":
-            bullet["rect"].y += BULLET_SPEED
+            bullet["rect"].y -= BULLET_SPEED
 
         elif bullet["direction"] == "down":
             bullet["rect"].y += BULLET_SPEED 
@@ -293,7 +293,19 @@ while running:
 
         else:
 
-            if bullet["owner"] != player1:
+            if bullet["owner"] == player1:
+                if bullet["rect"].colliderect(player2.rect):
+
+                    player2.health -= BULLET_DAMAGE
+                    bullets.remove(bullet)
+
+                    if player2.health <= 0:
+                        scores["player1"] += 1
+
+                        player2.rect.topleft = (0, 775)
+                        player2.health = 100
+
+            elif bullet["owner"] == player2:
                 if bullet["rect"].colliderect(player1.rect):
 
                     player1.health -= BULLET_DAMAGE
@@ -302,20 +314,8 @@ while running:
                     if player1.health <= 0:
                         scores["player2"] += 1
 
-                        player1.rect.topleft = (0, 775)
+                        player1.rect.topleft = (1400, 775)
                         player1.health = 100
-
-            elif bullet["owner"] != player2:
-                if bullet["rect"].colliderect(player2.rect):
-
-                    player2.health -= BULLET_DAMAGE
-                    bullets.remove(bullet)
-
-                    if player2.health <= 0:
-                        scores["player2"] += 1
-
-                        player2.rect.topleft = (0, 775)
-                        player2.health = 100
 
     for wall in walls:
         if player1.rect.colliderect(wall):
@@ -330,7 +330,7 @@ while running:
         pygame.draw.rect(screen, black, wall)
 
     for bullet in bullets:
-        pygame.drawn.rect(screen, yellow, bullet["rect"])
+        pygame.draw.rect(screen, yellow, bullet["rect"])
 
     player1.draw(screen)
     player1.draw_gun(screen)
