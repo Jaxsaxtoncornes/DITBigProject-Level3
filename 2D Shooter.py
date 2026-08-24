@@ -160,6 +160,11 @@ class Players:
             self.rect
         )
 
+    def draw_gun(self, screen):
+
+        gun_width = 12
+        gun_height = 6
+
     def collision(self, other):
         if self.rect.colliderect(other.rect):
             return True
@@ -172,7 +177,8 @@ player1 = Players(
     pygame.K_a,
     pygame.K_d,
     pygame.K_w,
-    pygame.K_s    
+    pygame.K_s,
+    pygame.K_f  
 )
 
 player2 = Players(
@@ -181,7 +187,8 @@ player2 = Players(
     pygame.K_j,
     pygame.K_l,
     pygame.K_i,
-    pygame.K_k
+    pygame.K_k,
+    pygame.K_h
 )
 
 walls = [
