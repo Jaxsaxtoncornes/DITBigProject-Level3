@@ -53,6 +53,8 @@ class Players:
 
         self.facing = "right"
 
+        self.last_shot = 0
+
     def movement(self, keys, other):
 
         if keys[self.left]:
