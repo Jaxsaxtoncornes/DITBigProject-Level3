@@ -250,6 +250,20 @@ while running:
     player2.movement(keys, player1)
     player2.boundrys()
 
+    for bullet in bullets:
+
+        if bullet["direction"] == 1:
+            bullet["rect"].x += BULLET_SPEED
+
+        elif bullet["direction"] == -1:
+            bullet["rect"].x += BULLET_SPEED
+
+        elif bullet["direction"] == "up":
+            bullet["rect"].y += BULLET_SPEED
+
+        elif bullet["direction"] == "down":
+            bullet["rect"].y += BULLET_SPEED 
+
     for wall in walls:
         if player1.rect.colliderect(wall):
             player1.rect = old_rect1.copy()
@@ -267,6 +281,10 @@ while running:
 
     player2.draw(screen)
     player2.draw_gun(screen)
+
+
+
+    
 
     pygame.display.flip()
 
