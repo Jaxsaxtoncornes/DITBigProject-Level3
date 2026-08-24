@@ -5,9 +5,19 @@ pygame.init()
 
 SCREEN_WIDTH = 1450
 SCREEN_HEIGHT = 800
+
 BULLET_WIDTH = 5
 BULLET_HEIGHT = 15
 BULLET_SPEED = 10
+BULLET_DAMAGE = 20
+SHOOT_COOLDOWN = 300
+
+bullets = []
+
+scores = {
+    "player1": 0,
+    "player2": 0,
+}
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("2D Shooter")
@@ -17,8 +27,6 @@ clock = pygame.time.Clock()
 BACKGROUND_COLOUR = (224, 255, 255)
 black = (0,0,0)
 yellow = (225, 225, 0)
-
-bullets = []
 
 
 class Players:
