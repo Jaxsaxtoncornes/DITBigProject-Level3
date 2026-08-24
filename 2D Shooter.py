@@ -59,9 +59,12 @@ class Players:
 
         if keys[self.left]:
             self.rect.x -= self.speed
+            self.facing - "left"
         
         if keys[self.right]:
             self.rect.x += self.speed
+            self.facing - "right"
+
         
         if self.collision(other):
             if keys[self.left]:
@@ -72,9 +75,11 @@ class Players:
 
         if keys[self.up]:
             self.rect.y -= self.speed
+            self.facing - "up"
         
         if keys[self.down]:
             self.rect.y += self.speed
+            self.facing - "down"
 
         if self.collision(other):
             if keys[self.up]:
