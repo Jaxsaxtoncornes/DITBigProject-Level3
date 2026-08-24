@@ -241,6 +241,12 @@ while running:
 
     keys = pygame.key.get_pressed()
 
+    if keys[player1.shoot]:
+        player1.shoot_bullet()
+
+    if keys[player2.shoot]:
+        player2.shoot_bullet()
+
     old_rect1 = player1.rect.copy()
     old_rect2 = player2.rect.copy()
 
@@ -308,6 +314,9 @@ while running:
 
     for wall in walls:
         pygame.draw.rect(screen, black, wall)
+
+    for bullet in bullets:
+        pygame.drawn.rect(screen, yellow, bullet["rect"])
 
     player1.draw(screen)
     player1.draw_gun(screen)
